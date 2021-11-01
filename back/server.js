@@ -1,0 +1,37 @@
+const express = require('express');
+const cors = require('cors');
+const mongoose = require('mongoose');
+const filmsRouter = require('./routes/films');
+
+//Have enviroment variables in a .env file
+require('dotenv').config();
+
+//Create Express Server 
+const app = express();
+//Create middleware 
+app.use(cors());
+app.use(express.json()); //Parse JSON
+
+
+const port = process.env.PORT || 3000;
+
+
+
+const uri = process.env.SHUTTER_URI;
+mongoose.connect(uri);
+const connection = mongoose.connection;
+connection.once('open', () => {
+    console.log("connected to shutter database.");
+})
+
+
+app.use('/films', filmsRouter);
+
+
+
+
+
+
+app.listen(port, () => {
+    console.log(`Server is running on port: ${port}`);
+})
