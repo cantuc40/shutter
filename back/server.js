@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const filmsRouter = require('./routes/films');
 const cameraRouter = require('./routes/cameras');
 const movieFilm = require('./routes/movieFilms');
+const userRouter = require('./routes/users')
 
 //Have enviroment variables in a .env file
 require('dotenv').config();
@@ -30,6 +31,7 @@ connection.once('open', () => {
 app.use('/film', filmsRouter);
 app.use('/camera', cameraRouter);
 app.use('/movie-film', movieFilm);
+app.use('/users', userRouter); 
 
 
 
