@@ -1,25 +1,23 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const filmSchema = new Schema ({
+const moviefilmSchema = new Schema ({
     name: String,
     film_type: String,
     iso: Number,
     format: String,
-    exposures: Number,
+    feet: Number,
     company: String,
-    quantity: Number,
     price: {
         amazon: Number,
         b_h: Number,
         cinestill: Number,
-        lomography: Number,
-        ebay: Number
+        lomography: Number
     },
 }, {
     timestamps: true,
 });
 
-const Film = mongoose.model('Film', filmSchema);
+const movieFilm = mongoose.model('Movie Film', moviefilmSchema);
 
-module.exports = Film; 
+module.exports = movieFilm; 

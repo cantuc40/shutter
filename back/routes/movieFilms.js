@@ -1,23 +1,23 @@
-const Film = require('../models/films.model');
+const movieFilm = require('../models/moviefilm.model');
 const router = require('express').Router();
 
 
-//Retrieve all film info
+//Retrieve all movie film info
 router.get('/', (req, res) => {
 
-    //Find all film schemas in the DB 
-    Film.find()
-        .then(films => res.json(films))
+    //Find all movie film schemas in the DB 
+    movieFilm.find()
+        .then(movie_films => res.json(movie_films))
         .catch(err => res.status(400).json('Error: ' + err));
 
 });
 
-//Retrieve all film info
+//Retrieve all movie film info
 router.get('/:id', (req, res) => {
 
-    //Find all film schemas in the DB 
-    Film.findById(req.params.id)
-        .then(films => res.json(films))
+    //Find all movie film schemas in the DB 
+    movieFilm.findById(req.params.id)
+        .then(movie_films => res.json(movie_films))
         .catch(err => res.status(400).json('Error: ' + err));
 
 });
@@ -29,17 +29,16 @@ router.get('/:id', (req, res) => {
 
 
 
-//Add a film
+//Add a movie film
 router.post('/add', (req,res) => {
 
-    //get new film info
+    //get new movie film info
     const name = req.body.name;
     const film_type = req.body.film_type;
     const iso = req.body.iso;
     const format = req.body.format;
-    const exposures = req.body.exposures;
+    const feet = req.body.feet;
     const company = req.body.company;
-    const quantity = req.body.quantity;
 
     const price = {
         amazon: req.body.price.amazon,
@@ -49,21 +48,20 @@ router.post('/add', (req,res) => {
 
     };
 
-    //Create new film
-    const newFilm = new Film ({
+    //Create new movie film
+    const newMovieFilm = new movieFilm ({
         name,
         film_type,
         iso,
         format,
-        exposures,
+        feet,
         company,
-        quantity,
         price
     });
 
-    //Save new film into DB
-    newFilm.save()
-        .then(() => res.json('Film added'))
+    //Save new movie film into DB
+    newMovieFilm.save()
+        .then(() => res.json('movie film added'))
         .catch(err => res.status(400).json('Error: ' + err));
 
 });
@@ -73,22 +71,22 @@ router.post('/add', (req,res) => {
 
 
 
-//retrieve film based on id
+//retrieve movie film based on id
 router.get('/edit/:id', (req, res) => {
-    Film.findById(req.params.id)
+    movieFilm.findById(req.params.id)
         //Return exercise as a JSON file
-        .then(film => res.json(film))
+        .then(movie_films => res.json(movie_films))
         //Otherwise, return status 400 Error
         .catch(err => res.status(400).json('Error: ' + err));
 
 });
 
 
-//delete film from database based on id
+//delete movie film from database based on id
 router.delete('/:id', (req, res) => {
-    Film.findByIdAndDelete(req.params.id)
+    movieFilm.findByIdAndDelete(req.params.id)
         //Return deletion message as a JSON file
-        .then(() => res.json('Film deleted'))
+        .then(() => res.json('movie film deleted'))
         //Otherwise, return status 400 Error
         .catch(err => res.status(400).json('Error: ' + err));
 
@@ -109,20 +107,21 @@ router.delete('/:id', (req, res) => {
 
 
 
-//Update Existing film
+//Update Existing movie film
 router.put('/update/:id', (req, res) => {
-    Film.findById(req.params.id)
+    movieFilm.findById(req.params.id)
 
-    .then(film => {
-        film.name = req.body.name;
-        film.film_type = req.body.film_type;
-        film.format = req.body.format;
-        film.exposures = req.body.exposures
-        film.company = req.body.company;
-        film.price = req.body.price;
+    .then(movie_film => {
+        movie_film.name = req.body.name;
+        movie_film.film_type = req.body.film_type;
+        movie_film.iso = req.body.iso;
+        movie_film.format = req.body.format;
+        movie_film.feet = req.body.feet;
+        movie_film.company = req.body.company;
+        movie_film.price = req.body.price;
 
-        film.save()
-            .then(() => res.json('Film updated'))
+        movie_film.save()
+            .then(() => res.json('movie film updated'))
             .catch(err => res.status(400).json('Error: ' + err));
     })
 

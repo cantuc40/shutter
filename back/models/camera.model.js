@@ -1,14 +1,11 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const filmSchema = new Schema ({
+const cameraSchema = new Schema ({
     name: String,
-    film_type: String,
-    iso: Number,
     format: String,
-    exposures: Number,
     company: String,
-    quantity: Number,
+    lens_mount: String,
     price: {
         amazon: Number,
         b_h: Number,
@@ -20,6 +17,6 @@ const filmSchema = new Schema ({
     timestamps: true,
 });
 
-const Film = mongoose.model('Film', filmSchema);
+const Camera = mongoose.model('Camera', cameraSchema);
 
-module.exports = Film; 
+module.exports = Camera; 

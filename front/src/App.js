@@ -1,23 +1,25 @@
-import logo from './logo.svg';
+import React from 'react';
+import {Route, Switch} from 'react-router-dom';
 import './App.css';
+
+import Display from './pages/display.component';
+import Header from './components/header.component';
+import AddFilm from './pages/add-film.component';
+import DeleteFilm from './pages/delete-film.component';
+import EditFilm from './pages/edit-film.component';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header/>
+      <Switch>
+        <Route path='/' exact component={Display}/>
+        <Route path='/add' component={AddFilm}/>
+        <Route path= '/modify/:id' component={EditFilm}/>
+        <Route path='/delete/:id' component={DeleteFilm}/>
+      </Switch>
+
     </div>
   );
 }

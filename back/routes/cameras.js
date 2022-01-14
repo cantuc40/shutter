@@ -1,23 +1,23 @@
-const Film = require('../models/films.model');
+const Camera = require('../models/camera.model');
 const router = require('express').Router();
 
 
-//Retrieve all film info
+//Retrieve all Camera info
 router.get('/', (req, res) => {
 
-    //Find all film schemas in the DB 
-    Film.find()
-        .then(films => res.json(films))
+    //Find all Camera schemas in the DB 
+    Camera.find()
+        .then(cameras => res.json(cameras))
         .catch(err => res.status(400).json('Error: ' + err));
 
 });
 
-//Retrieve all film info
+//Retrieve all Camera info
 router.get('/:id', (req, res) => {
 
-    //Find all film schemas in the DB 
-    Film.findById(req.params.id)
-        .then(films => res.json(films))
+    //Find all Camera schemas in the DB 
+    Camera.findById(req.params.id)
+        .then(cameras => res.json(cameras))
         .catch(err => res.status(400).json('Error: ' + err));
 
 });
@@ -29,17 +29,14 @@ router.get('/:id', (req, res) => {
 
 
 
-//Add a film
+//Add a Camera
 router.post('/add', (req,res) => {
 
-    //get new film info
+    //get new Camera info
     const name = req.body.name;
-    const film_type = req.body.film_type;
-    const iso = req.body.iso;
     const format = req.body.format;
-    const exposures = req.body.exposures;
     const company = req.body.company;
-    const quantity = req.body.quantity;
+    const lens_mount = req.body.lens_mount;
 
     const price = {
         amazon: req.body.price.amazon,
@@ -49,21 +46,18 @@ router.post('/add', (req,res) => {
 
     };
 
-    //Create new film
-    const newFilm = new Film ({
+    //Create new Camera
+    const newCamera = new Camera ({
         name,
-        film_type,
-        iso,
         format,
-        exposures,
         company,
-        quantity,
+        lens_mount,
         price
     });
 
-    //Save new film into DB
-    newFilm.save()
-        .then(() => res.json('Film added'))
+    //Save new Camera into DB
+    newCamera.save()
+        .then(() => res.json('Camera added'))
         .catch(err => res.status(400).json('Error: ' + err));
 
 });
@@ -73,22 +67,22 @@ router.post('/add', (req,res) => {
 
 
 
-//retrieve film based on id
+//retrieve Camera based on id
 router.get('/edit/:id', (req, res) => {
-    Film.findById(req.params.id)
+    Camera.findById(req.params.id)
         //Return exercise as a JSON file
-        .then(film => res.json(film))
+        .then(cameras => res.json(cameras))
         //Otherwise, return status 400 Error
         .catch(err => res.status(400).json('Error: ' + err));
 
 });
 
 
-//delete film from database based on id
+//delete Camera from database based on id
 router.delete('/:id', (req, res) => {
-    Film.findByIdAndDelete(req.params.id)
+    Camera.findByIdAndDelete(req.params.id)
         //Return deletion message as a JSON file
-        .then(() => res.json('Film deleted'))
+        .then(() => res.json('Camera deleted'))
         //Otherwise, return status 400 Error
         .catch(err => res.status(400).json('Error: ' + err));
 
@@ -109,20 +103,20 @@ router.delete('/:id', (req, res) => {
 
 
 
-//Update Existing film
+//Update Existing Camera
 router.put('/update/:id', (req, res) => {
-    Film.findById(req.params.id)
+    Camera.findById(req.params.id)
 
-    .then(film => {
-        film.name = req.body.name;
-        film.film_type = req.body.film_type;
-        film.format = req.body.format;
-        film.exposures = req.body.exposures
-        film.company = req.body.company;
-        film.price = req.body.price;
+    .then(Camera => {
+        Camera.name = req.body.name;
+        Camera.Camera_type = req.body.Camera_type;
+        Camera.format = req.body.format;
+        Camera.exposures = req.body.exposures
+        Camera.company = req.body.company;
+        Camera.price = req.body.price;
 
-        film.save()
-            .then(() => res.json('Film updated'))
+        Camera.save()
+            .then(() => res.json('Camera updated'))
             .catch(err => res.status(400).json('Error: ' + err));
     })
 
