@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-dom';
 import axios from 'axios';
-import port from '../../../back/server';
 
 
 
@@ -14,9 +13,6 @@ const Film = props => (
         <td>{props.film.format}</td>
         <td>{props.film.exposures}</td>
         <td>{props.film.company}</td>
-        <td>
-            <Link to={"/edit/"+props.film._id}>Edit</Link> | <a href="#" onClick={() => {props.DeleteFilm(props.film._id) }}>Delete</a>
-        </td>
     </tr>
 )
 
@@ -47,12 +43,12 @@ export default class Display extends Component{
 
 
     DeleteFilm(id) {
-        axios.delete(`http://localhost:${port}/films` + id)
+        axios.delete('http://localhost:3000/films' + id)
 
             .then(res => console.log(res.data));
 
         this.setState ({
-            films: this.state.films.filter(el => el.id != id)
+            films: this.state.films.filter(el => el.id !== id)
         })
 
     }
