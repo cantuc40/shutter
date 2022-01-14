@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+//import {Link} from 'react-router-dom';
 import axios from 'axios';
-import port from '../../../back/server';
 
 
 
@@ -35,7 +34,7 @@ export default class EditFilm extends Component{
 
     
     componentDidMount() {
-        axios.get(`http://localhost:${port}/`+this.props.match.params.id)
+        axios.get('http://localhost:3000/'+this.props.match.params.id)
         .then(response => {
             this.setState({
                 name: response.data.name,
