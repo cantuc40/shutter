@@ -31,7 +31,7 @@ router.get('/:id', (req, res) => {
 
 //Add a film
 router.post('/add', (req,res) => {
-
+    
     //get new film info
     const name = req.body.name;
     const film_type = req.body.film_type;
