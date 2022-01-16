@@ -1,0 +1,55 @@
+<h1>Films</h1>
+{% if latest_film_list %}
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Format</th>
+            <th>Type</th>
+            <th>ISO</th>
+            <th>Exposures</th>
+            <th>Number of Rolls</th>
+            <th>Price</th>
+            <th>More info</th>
+        </tr>
+    {% for film in latest_film_list %}
+        <tr>
+            <td>{{ film.name }}</td>
+            <td>{{ film.company }}</td>
+            <td>{{ film.format }}</td>
+            <td>{{ film.type }}</td>
+            <td>{{ film.iso }}</td>
+            <td>{{ film.exposures }}</td>
+            <td>{{ film.number_of_rolls }}</td>
+            <td>{{ film.price }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No films are available</p>
+{% endif %}
+
+
+<h1>Cameras</h1>
+{% if latest_camera_list %}
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Company</th>
+            <th>Format</th>
+            <th>Lens Mount</th>
+            <th>Price</th>
+        </tr>
+    {% for camera in latest_camera_list %}
+        <tr>
+            <td>{{ camera.name }}</td>
+            <td>{{ camera.company }}</td>
+            <td>{{ camera.format }}</td>
+            <td>{{ camera.lens_mount }}</td>
+            <td>{{ camera.price }}</td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No cameras are available</p>
+{% endif %}
