@@ -8,12 +8,16 @@ def index(request):
     latest_camera_list = Camera.objects.order_by('id')
     context = {'latest_film_list': latest_film_list, 'latest_camera_list': latest_camera_list}
     return render(request, 'photography/index.html', context)
-    #return HttpResponse("Hello, world. You're at the photography index.")
+
 
 def camera(request, camera_id):
-    return HttpResponse("%d" % camera_id)
+    camera = Camera.objects.get(pk=camera_id)
+    context = {'camera': camera}
+    return render(request, 'photography/camera.html', context)
 
-def film(request):
-    latest_film_list = Film.objects.order_by('id')
-    context = {'latest_film_list': latest_film_list}
+
+
+def film(request, film_id):
+    film = Film.objects.get(pk=film_id)
+    context = {'film': film}
     return render(request, 'photography/film.html', context)
