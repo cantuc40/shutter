@@ -12,6 +12,7 @@ jobs:
           PG_USER: $DB_USER
           PG_PASSWD: $DB_PASSWD
           PG_DB: $DB_NAME
+          PG_KEY: $SECRET_KEY
     steps:
       - checkout
       - run: sudo chown -R circleci:circleci /usr/local/bin
