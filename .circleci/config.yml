@@ -7,7 +7,7 @@ jobs:
   build-and-test: 
     docker:
       - image: cimg/python:3.10.2
-      - image: cimg/postgres:14.2.0
+      - image: cimg/postgres:latest
         environment:
           PG_USER: $DB_USER
           PG_PASSWD: $DB_PASSWD
