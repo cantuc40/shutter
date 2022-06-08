@@ -1,0 +1,12 @@
+{% if film %}
+    <p>Name: {{ film.name }}</p>
+    <p>Company: {{ film.company }}</p>
+    <p>Format: {{ film.format }}</p>
+    <p>Type: {{ film.type}} </p>
+    <p>ISO: {{ film.iso }} </p>
+    <p>Exposures: {{ film.exposures }} </p>
+    <p>Number of Rolls: {{ film.number_of_rolls}} </p>
+    <p>Price: {{ film.price }}</p>
+{% else %}
+    <p>ERROR</p>
+{% endif %}

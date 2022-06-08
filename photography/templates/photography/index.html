@@ -1,0 +1,40 @@
+<h1>Films</h1>
+{% if latest_film_list %}
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Company</th>
+            <th>More info</th>
+        </tr>
+    {% for film in latest_film_list %}
+        <tr>
+            <td>{{ film.name }}</td>
+            <td>{{ film.company }}</td>
+            <td><a href="{% url 'photography:film' film.id %}">Click</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No films are available</p>
+{% endif %}
+
+
+<h1>Cameras</h1>
+{% if latest_camera_list %}
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Company</th>
+            <th>More info</th>
+        </tr>
+    {% for camera in latest_camera_list %}
+        <tr>
+            <td>{{ camera.name }}</td>
+            <td>{{ camera.company }}</td>
+            <td><a href="{% url 'photography:camera' camera.id %}">Click</a></td>
+        </tr>
+    {% endfor %}
+    </table>
+{% else %}
+    <p>No cameras are available</p>
+{% endif %}
